@@ -48,6 +48,10 @@ public class Country
         this.population = population;
     }
 
+    public void totalPopulation(double population) {
+        this.medianage = medianage;
+    }
+
     public double getLandmasskm2() {
         return landmasskm2;
     }
@@ -63,6 +67,8 @@ public class Country
     public void setMedianage(double medianage) {
         this.medianage = medianage;
     }
+
+
 
     @Override
     public String toString() {
