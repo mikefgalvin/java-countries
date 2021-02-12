@@ -77,7 +77,7 @@ public class CountryController
         }
 
         System.out.println(total);
-        return new ResponseEntity<>(total, HttpStatus.OK);
+        return new ResponseEntity<>("The total population is:" + total, HttpStatus.OK);
     }
 
     //        http://localhost:2019/population/min
@@ -106,6 +106,20 @@ public class CountryController
 
         System.out.println(myList.get(myList.size()-1));
         return new ResponseEntity<>(myList.get(myList.size()-1), HttpStatus.OK);
+    }
+
+    //        http://localhost:2019/population/median
+    @GetMapping(value = "/countries/population/median", produces = {"application/json"})
+    public ResponseEntity<?> listPopulationMedian()
+    {
+        List<Country> myList = new ArrayList<>();
+        countryRepo.findAll().iterator().forEachRemaining(myList::add);
+
+        myList.sort((c1, c2) -> (int)(c1.getPopulation() - c2.getPopulation()));
+
+
+        System.out.println(myList.get((myList.size() / 2) + 1));
+        return new ResponseEntity<>(myList.get((myList.size() / 2) + 1), HttpStatus.OK);
     }
 
 
